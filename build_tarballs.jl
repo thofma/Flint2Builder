@@ -16,7 +16,14 @@ sources = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd flint2/
-./configure --prefix=$prefix --disable-static --enable-shared --with-gmp=$prefix --with-mpfr=$prefix
+
+# If we're compiling for Windows, then disable things
+if [[ ${target} == *mingw* ]]; then
+    ./configure --prefix=$prefix --disable-static --enable-shared --with-gmp=$prefix --with-mpfr=$prefix
+else
+    ./configure --prefix=$prefix --disable-static --enable-shared --reentrant --with-gmp=$prefix --with-mpfr=$prefix
+fi
+
 make -j${nproc}
 make install
 
