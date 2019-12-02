@@ -16,14 +16,7 @@ sources = [
 script = raw"""
 cd $WORKSPACE/srcdir
 cd flint2/
-
-# If we're compiling for Windows, then disable things
-if [[ ${target} == *mingw* ]]; then
-    ./configure --prefix=$prefix --disable-static --enable-shared --reentrant --with-gmp=$prefix --with-mpfr=$prefix
-else
-    ./configure --prefix=$prefix --disable-static --enable-shared --with-gmp=$prefix --with-mpfr=$prefix
-fi
-
+if [[ ${target} == *mingw* ]]; then     ./configure --prefix=$prefix --disable-static --enable-shared --reentrant --with-gmp=$prefix --with-mpfr=$prefix; else     ./configure --prefix=$prefix --disable-static --enable-shared --with-gmp=$prefix --with-mpfr=$prefix; fi
 make -j${nproc}
 make install
 
@@ -39,7 +32,7 @@ platforms = [
 
 # The products that we will ensure are always built
 products(prefix) = [
-    LibraryProduct(prefix, "libflint", Symbol("libflint insta\x01\e[A\x01\e[B\e[B"))
+    LibraryProduct(prefix, "libflint", :libflint)
 ]
 
 # Dependencies that must be installed before this package can be built
