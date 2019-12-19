@@ -3,12 +3,12 @@
 using BinaryBuilder
 
 name = "libflint"
-version = v"0.0.0-d46056d45c6429f58ec63cf3c2e59b00f8431479"
+version = v"0.0.0-ba0ceed35136a2a43441ab9a9b2e7764e38548ea"
 
 # Collection of sources required to build libflint
 sources = [
     "https://github.com/wbhart/flint2.git" =>
-    "d46056d45c6429f58ec63cf3c2e59b00f8431479",
+    "ba0ceed35136a2a43441ab9a9b2e7764e38548ea",
 
 ]
 
